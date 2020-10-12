@@ -16,10 +16,13 @@ export class AppComponent {
     this.store.dispatch(new fromStore.LoadCustomer());
   }
   constructor(private store: Store<fromStore.IAppState>, custumerService: CustomerService) {
-    store.select('customers').subscribe(resCustomer => {
-      this.customers = resCustomer.data;
+    store.select(fromStore.getCustomers).subscribe(resCustomer => {
+      this.customers = resCustomer;
     });
 
+    store.select(fromStore.getCustumerById(2)).subscribe(resCustomer => {
+      console.log(resCustomer);
+    });
 
   }
 }

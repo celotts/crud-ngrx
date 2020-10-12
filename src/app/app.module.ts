@@ -8,6 +8,7 @@ import { reducers, effects } from './store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { EffectsModule } from '@ngrx/effects';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({}),
     EffectsModule.forRoot(effects),
