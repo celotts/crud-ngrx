@@ -11,10 +11,14 @@ import { CustomerService } from './services/customer.service';
 export class AppComponent {
   customers: ICustomer[];
 
-  constructor(private store: Store<fromStore.IAppState>,
-    custumerService: CustomerService) {
+  constructor(private store: Store<fromStore.IAppState>, custumerService: CustomerService) {
     /* store.select('customers').subscribe(resCustomer => {
       this.customers = resCustomer.data;
     }); */
+
+    custumerService.getCustomers().subscribe(resCustomer => {
+      this.customers = resCustomer;
+
+    });
   }
 }
