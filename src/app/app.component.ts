@@ -11,14 +11,15 @@ import { CustomerService } from './services/customer.service';
 export class AppComponent {
   customers: ICustomer[];
 
+  // tslint:disable-next-line: use-lifecycle-interface
+  ngOnInit(): void {
+    this.store.dispatch(new fromStore.LoadCustomer());
+  }
   constructor(private store: Store<fromStore.IAppState>, custumerService: CustomerService) {
-    /* store.select('customers').subscribe(resCustomer => {
+    store.select('customers').subscribe(resCustomer => {
       this.customers = resCustomer.data;
-    }); */
+    });
 
-    /* custumerService.getCustomers().subscribe(resCustomer => {
-      this.customers = resCustomer;
 
-    }); */
   }
 }
