@@ -16,9 +16,9 @@ export class AppComponent {
       this.customers = resCustomer.data;
     }); */
 
-    custumerService.getCustomers().subscribe(resCustomer => {
+    /* custumerService.getCustomers().subscribe(resCustomer => {
       this.customers = resCustomer;
 
-    });
+    }); */
   }
 }
