@@ -1,3 +1,43 @@
+<div class="overlay" [ngStyle]="{'display':display}"></div>
+<!-- Modal -->
+<div class="modal" [ngStyle]="{'display':display}" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{ isEditModeEnabled ? 'Edit' : 'Add'}} customer</h5>
+        <button (click)="closeModal(myForm)" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #myForm="ngForm">
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]='person.name' placeholder='Enter a name' name="name"
+              #name>
+          </div>
+          <div class="form-group">
+            <input type="number" class="form-control" [(ngModel)]='person.age' placeholder='Enter your age' name="age"
+              #age>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control" [(ngModel)]='person.email' placeholder='Enter your email'
+              name="email" #email>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="id" #id hidden>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-dismiss="modal" (click)="closeModal(myForm)">Close</button>
+        <input *ngIf="!isEditModeEnabled" type="button" class="btn btn-primary" (click)="addCustomer(myForm)"
+          value='Add Client'>
+        <input *ngIf="isEditModeEnabled" type="button" class="btn btn-success" (click)="updateCustomer(myForm)"
+          value='Update'>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container">
   <form style="background: #428bca; padding-top: 20px; margin-top: 20px;padding-bottom: 2px;">
     <div class="form-group">
@@ -23,12 +63,13 @@
         <td>{{customer?.age}}</td>
         <td>{{customer?.email}}</td>
         <td>
-          <button class="btn btn-danger fa fa-trash-o"> Remove</button>
+          <button class="btn btn-danger fa fa-trash-o" (click)="remove(customer)"> Remove</button>
         </td>
         <td>
-          <button class="btn btn-primary fa fa-pencil-square"> Edit</button>
+          <button class="btn btn-primary fa fa-pencil-square" (click)="edit(customer)"> Edit</button>
         </td>
       </tr>
     </tbody>
   </table>
+  <button class="btn btn-primary" (click)="openModal()">Ad Custumer</button>
 </div>
