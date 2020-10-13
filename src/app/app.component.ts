@@ -34,7 +34,8 @@ export class AppComponent {
 
 
   updateCustomer(myForm) {
-
+    this.store.dispatch(new fromStore.UpdateCustomer(myForm.value));
+    this.closeModal(myForm);
   }
 
   closeModal(myForm: NgForm) {

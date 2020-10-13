@@ -27,5 +27,17 @@ export class CustomerEffects {
           catchError(err => of(new fromCustomersAction.LoadCustomerFail(err))))
       ))
   );
+
+  @Effect()
+  updateCustomer: Observable<Action> = this.actions$.pipe(
+    ofType(fromCustomersAction.UPDATE_CUSTOMER),
+    map((action: fromCustomersAction.UpdateCustomer) => action.payload),
+    switchMap((payload) => this.custumerService.updateCustomer(payload)
+      .pipe(
+        map(response => new fromCustomersAction.UpdateCustomerSuccess(response))
+      ),
+      catchError(error => of(new fromCustomersAction.UpdateCustomerFail(error))))
+  );
 }
+
 

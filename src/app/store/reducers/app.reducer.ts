@@ -43,6 +43,16 @@ export function reducer(state = initialState, action: fromCustomerActions.Custom
         error: action.payload
       };
     }
+    case fromCustomerActions.UPDATE_CUSTOMER_SUCCESS: {
+      const data = state.data.map(customer => {
+        if (customer.id === action.payload.id) {
+          return action.payload;
+        } else {
+          return customer;
+        }
+      });
+    }
+    // tslint:disable-next-line: no-switch-case-fall-through
     default: {
       return state;
     }
